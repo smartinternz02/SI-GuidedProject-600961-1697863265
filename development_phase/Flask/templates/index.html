@@ -1,0 +1,179 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Diabetes Prediction</title>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <style>
+	
+	.bg-dark {
+		background-color: 	#1a1552!important;
+	}
+	#result {
+		color: #1a1552;
+	}
+	
+	</style>
+	<style>
+		#input-attributes-form {
+			margin: 20px;
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			background-color: #f9f9f9;
+			max-width: 800px;
+			margin: 0 auto;
+		}
+	
+		.column {
+			width: 33.33%;
+			float: left;
+			padding: 10px;
+		}
+	
+		.clearfix::after {
+			content: "";
+			clear: both;
+			display: table;
+		}
+	
+		label {
+			display: block;
+			margin-top: 10px;
+		}
+	
+		input[type="text"],
+		input[type="number"] {
+			width: 100%;
+			padding: 10px;
+			margin-top: 5px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+		}
+	
+		#btn-predict {
+			background-color: #007BFF;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+	
+		#btn-predict:hover {
+			background-color: #0056b3;
+		}
+	
+		.loader {
+			display: none;
+			text-align: center;
+		}
+	</style>
+	
+</head>
+<body>
+        <div class="container">
+			<h1>
+			Diabetes Prediction
+			</h1>
+        </div>
+    <div class="container">
+        <div id="content" style="margin-top:2em">
+		<div class="container">
+		  <div class="row">
+			<div class="col-sm-6">
+				<div id="form-container">
+					<form action="/" id="input-attributes-form" method="post" onsubmit="return false;">
+						<label for="HighBP">High Blood Pressure (1 if true, 0 if false):</label>
+						<input type="text" name="HighBP" id="HighBP" required>
+						
+						<label for="HighChol">High Cholesterol (1 if true, 0 if false):</label>
+						<input type="text" name="HighChol" id="HighChol" required>
+						
+						<label for="CholCheck">Cholesterol Check (1 if true, 0 if false):</label>
+						<input type="text" name="CholCheck" id="CholCheck" required>
+						
+						<label for="BMI">BMI:</label>
+						<input type="text" name="BMI" id="BMI" required>
+						
+						<label for="Smoker">Smoker (1 if true, 0 if false):</label>
+						<input type="text" name="Smoker" id="Smoker" required>
+						
+						<label for="Stroke">Stroke (1 if true, 0 if false):</label>
+						<input type="text" name="Stroke" id="Stroke" required>
+					
+						<label for="HeartDiseaseorAttack">Heart Disease or Attack (1 if true, 0 if false):</label>
+						<input type="text" name="HeartDiseaseorAttack" id="HeartDiseaseorAttack" required>
+					
+						<label for="PhysActivity">Physical Activity (1 if true, 0 if false):</label>
+						<input type="text" name="PhysActivity" id="PhysActivity" required>
+						
+						<label for="Fruits">Fruits (1 if true, 0 if false):</label>
+						<input type="text" name="Fruits" id="Fruits" required>
+						
+						<label for="Veggies">Veggies (1 if true, 0 if false):</label>
+						<input type="text" name="Veggies" id="Veggies" required>
+						
+						<label for="hvyAlcoholConsump">Heavy Alcohol Consumption (1 if true, 0 if false):</label>
+    					<input type="text" name="hvyAlcoholConsump" id="hvyAlcoholConsump" required>
+						
+						<label for="AnyHealthcare">Any Healthcare (1 if true, 0 if false):</label>
+						<input type="text" name="AnyHealthcare" id="AnyHealthcare" required>
+						
+						<label for="NoDocbcCost">No Doctor because of Cost (1 if true, 0 if false):</label>
+						<input type="text" name="NoDocbcCost" id="NoDocbcCost" required>
+						
+						<label for="GenHlth">General Health:</label>
+						<input type="text" name="GenHlth" id="GenHlth" required>
+						
+						<label for="MentHlth">Mental Health:</label>
+						<input type="text" name="MentHlth" id="MentHlth" required>
+						
+						<label for="PhysHlth">Physical Health:</label>
+						<input type="text" name="PhysHlth" id="PhysHlth" required>
+						
+						<label for="DiffWalk">Difficulty Walking (1 if true, 0 if false):</label>
+						<input type="text" name="DiffWalk" id="DiffWalk" required>
+						
+						<label for="Sex">Sex (1 if Male, 0 if Female):</label>
+						<input type="text" name="Sex" id="Sex" required>
+						
+						<label for="Age">Age:</label>
+						<input type="number" name="Age" id="Age" required>
+						
+						<label for="Education">Education:</label>
+						<input type="text" name="Education" id="Education" required>
+						
+						<label for="Income">Income:</label>
+						<input type="text" name="Income" id="Income" required>
+					
+						<br>
+						<br>
+						<input id="btn-predict" type="submit" value="Submit">
+					</form>
+				</div>
+					
+					
+					<div class="loader" style="display:none;"></div>
+			<h2>
+				<span id="result"> </span>
+			</h2>
+
+		</div>
+			</div>
+			 
+		  </div>
+		</div>
+		</div>
+    </div>
+</body>
+
+<footer>
+    <script src="{{ url_for('static', filename='js/main.js') }}" type="text/javascript"></script>    
+</footer>
+
+</html>
